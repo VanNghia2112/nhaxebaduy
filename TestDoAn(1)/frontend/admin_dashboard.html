@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General styling for the dashboard */
+        
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        
+        .card {
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .table thead th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .table td,
+        .table th {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        /* Nút Quay lại trang chủ */
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Nút Quay lại trang chủ -->
+        <a href="index.html" class="back-btn">Quay lại trang chủ</a>
+        <h1 class="text-center">Admin Dashboard</h1>
+        <h3 class="my-4 text-center">Danh sách vé đã đặt:</h3>
+
+        <!-- Tuyến đi (Lagi - TP. Hồ Chí Minh, Lagi - Nha Trang, Lagi - Đà Lạt) -->
+        <div class="card">
+            <div class="card-header">
+                Tuyến đi (Lagi - TP. Hồ Chí Minh, Lagi - Nha Trang, Lagi - Đà Lạt)
+            </div>
+            <div class="card-body">
+                <!-- Tuyến đi Lagi - TP. Hồ Chí Minh -->
+                <h4>Lagi - TP. Hồ Chí Minh</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lagiHCMTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+
+                <!-- Tuyến đi Lagi - Nha Trang -->
+                <h4>Lagi - Nha Trang</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lagiNhaTrangTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+
+                <!-- Tuyến đi Lagi - Đà Lạt -->
+                <h4>Lagi - Đà Lạt</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lagiDaLatTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tuyến ngược lại (TP. Hồ Chí Minh -> Lagi, Nha Trang -> Lagi, Đà Lạt -> Lagi) -->
+        <div class="card">
+            <div class="card-header">
+                Tuyến ngược lại (TP. Hồ Chí Minh - Lagi, Nha Trang - Lagi, Đà Lạt - Lagi)
+            </div>
+            <div class="card-body">
+                <!-- Tuyến ngược lại TP. Hồ Chí Minh - Lagi -->
+                <h4>TP. Hồ Chí Minh - Lagi</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hcmLagiTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+
+                <!-- Tuyến ngược lại Nha Trang -> Lagi -->
+                <h4>Nha Trang - Lagi</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nhaTrangLagiTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+
+                <!-- Tuyến ngược lại Đà Lạt -> Lagi -->
+                <h4>Đà Lạt - Lagi</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Khách Hàng</th>
+                            <th>Ghế Đã Đặt</th>
+                            <th>Trạng Thái Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daLatLagiTable">
+                        <!-- Data from API will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Kiểm tra nếu không có token hoặc không phải admin, chuyển về trang đăng nhập
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html'; // Nếu không có token, chuyển về trang đăng nhập
+        } else {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (user.role !== 'admin') {
+                window.location.href = 'login.html'; // Nếu không phải admin, chuyển về trang đăng nhập
+            }
+        }
+
+        // Lấy dữ liệu từ API để hiển thị danh sách vé đã đặt
+        fetch('http://localhost:3000/api/trips/bookings/admin', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Sắp xếp theo ngày
+                data.sort((a, b) => new Date(a.tripId.date) - new Date(b.tripId.date));
+
+                // Lọc dữ liệu theo tuyến đi
+                const lagiHCMBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'Lagi' && booking.tripId.destination === 'TP. Hồ Chí Minh')
+                );
+                const nhaTrangBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'Lagi' && booking.tripId.destination === 'Nha Trang')
+                );
+                const daLatBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'Lagi' && booking.tripId.destination === 'Đà Lạt')
+                );
+
+                // Lọc dữ liệu cho tuyến ngược lại
+                const hcmLagiBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'TP. Hồ Chí Minh' && booking.tripId.destination === 'Lagi')
+                );
+                const nhaTrangLagiBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'Nha Trang' && booking.tripId.destination === 'Lagi')
+                );
+                const daLatLagiBookings = data.filter(booking =>
+                    (booking.tripId.departure === 'Đà Lạt' && booking.tripId.destination === 'Lagi')
+                );
+
+                // Hàm để tạo bảng
+                const createTableRow = (booking) => {
+                    return `
+                        <tr>
+                            <td>${booking.tripId.departure} - ${booking.tripId.destination}</td>
+                            <td>${booking.tripId.date}</td>
+                            <td>${booking.tripId.time}</td>
+                            <td>${booking.customerName} (${booking.customerPhone})</td>
+                            <td>${booking.bookedSeats.join(', ')}</td>
+                            <td>${booking.paymentStatus}</td>
+                        </tr>
+                    `;
+                };
+
+                // Gắn dữ liệu vào các bảng
+                document.getElementById('lagiHCMTable').innerHTML = lagiHCMBookings.map(createTableRow).join('');
+                document.getElementById('lagiNhaTrangTable').innerHTML = nhaTrangBookings.map(createTableRow).join('');
+                document.getElementById('lagiDaLatTable').innerHTML = daLatBookings.map(createTableRow).join('');
+
+                document.getElementById('hcmLagiTable').innerHTML = hcmLagiBookings.map(createTableRow).join('');
+                document.getElementById('nhaTrangLagiTable').innerHTML = nhaTrangLagiBookings.map(createTableRow).join('');
+                document.getElementById('daLatLagiTable').innerHTML = daLatLagiBookings.map(createTableRow).join('');
+            })
+            .catch(error => {
+                console.error('Error fetching bookings:', error);
+            });
+    </script>
+
+</body>
+
+</html>

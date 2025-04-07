@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .login-box {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease;
+        }
+        
+        h3 {
+            text-align: center;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .text-center a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .text-warning {
+            color: #ff9800 !important;
+        }
+        
+        .text-warning:hover {
+            color: #e68900 !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="login-box">
+        <h3 class="text-center mb-4 text-primary">Đăng Nhập</h3>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label class="form-label">Tên Đăng Nhập</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mật Khẩu</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+            <div class="text-center mt-3">
+                <a href="register.html">Chưa có tài khoản? Đăng ký</a>
+            </div>
+            <div class="text-center mt-2">
+                <a href="index.html" class="text-warning">← Quay lại Trang Chủ</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async(e) => {
+            e.preventDefault(); // Ngừng hành động mặc định của form
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Gửi yêu cầu đăng nhập đến API
+                const res = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+                });
+
+                const data = await res.json();
+
+                // Kiểm tra kết quả từ API
+                if (res.status === 200) {
+                    // Lưu thông tin người dùng vào localStorage
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+
+                    // In ra console để kiểm tra
+                    console.log('User Data saved to localStorage:', data.user);
+                    console.log('Token saved to localStorage:', data.token);
+
+                    // Kiểm tra nếu người dùng là admin
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin_dashboard.html'; // Chuyển đến trang Admin
+                    } else {
+                        window.location.href = 'index.html'; // Chuyển đến trang chính nếu người dùng bình thường
+                    }
+                } else {
+                    alert(data.message); // Thông báo lỗi nếu có
+                }
+            } catch (error) {
+                console.error('Login Error:', error);
+                alert('Đăng nhập thất bại. Vui lòng thử lại!');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

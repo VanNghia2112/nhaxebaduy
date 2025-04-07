@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Vé, Thuê Xe Trực Tuyến</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS Tùy Chỉnh -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo và Tên -->
+            <div class="left-section d-flex align-items-center">
+                <img src="https://vareno.vn/wp-content/uploads/2021/07/mercedes.jpg" class="logo" alt="Logo Ba Duy">
+                <h1 class="m-0">Du Lịch Ba Duy</h1>
+            </div>
+
+            <!-- Phần hiển thị tên người dùng và nút đăng xuất -->
+            <div id="userSection" class="right-section d-flex align-items-center">
+                <!-- Hiển thị tên người dùng -->
+                <span id="userName" class="me-2" style="display: none;"></span>
+                <!-- Nút đăng xuất -->
+                <button id="logoutBtn" class="btn btn-danger" style="display: none;">Đăng Xuất</button>
+
+                <!-- Hiển thị  đănútng nhập và đăng ký nếu chưa đăng nhập -->
+                <a id="loginBtn" href="login.html" class="btn btn-primary" style="display: block;">Đăng Nhập</a>
+                <a id="registerBtn" href="register.html" class="btn btn-secondary ml-2" style="display: block;">Đăng Ký</a>
+            </div>
+
+
+        </div>
+    </header>
+
+
+
+
+    <!-- Banner -->
+    <section class="banner text-center d-flex align-items-center justify-content-center">
+        <div class="banner-overlay"></div>
+        <!-- Lớp phủ mờ -->
+        <div class="banner-content">
+            <h2 class="display-4">Đặt Vé | Thuê Xe Hợp Đồng | Trực Tuyến Nhanh Chóng</h2>
+            <p class="lead">Đặt vé, thuê xe, dễ dàng, giá cả hợp lý, chuyến đi an toàn.</p>
+            <button class="btn btn-warning btn-lg mt-3">Đặt Vé Ngay</button>
+        </div>
+    </section>
+
+    <!-- Form Tìm Kiếm Chuyến Xe -->
+    <section class="search-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-4 text-primary section-title">Tìm Kiếm Chuyến Xe</h2>
+            <div class="search-box p-4 rounded-3 shadow-sm bg-white">
+                <form id="searchForm" class="row g-3 align-items-end justify-content-center">
+
+                    <!-- Chọn tuyến đường -->
+                    <div class="col-md-3">
+                        <label for="route" class="form-label"><strong>Chọn tuyến đường</strong></label>
+                        <select id="route" class="form-select" required>
+                        <option value="">Chọn tuyến đường</option>
+                        <option value="Lagi - TP. Hồ Chí Minh">Lagi - TP. Hồ Chí Minh</option>
+                        <option value="Lagi - Đà Lạt">Lagi - Đà Lạt</option>
+                        <option value="Lagi - Nha Trang">Lagi - Nha Trang</option>
+                    </select>
+                    </div>
+
+                    <!-- Điểm đón -->
+                    <div class="col-md-3">
+                        <label for="departure" class="form-label"><strong>Điểm đón</strong></label>
+                        <input type="text" id="departure" class="form-control" placeholder="Chọn điểm đón" list="pickupPoints" required>
+                        <datalist id="pickupPoints"></datalist>
+                    </div>
+
+                    <!-- Điểm đến -->
+                    <div class="col-md-3">
+                        <label for="destination" class="form-label"><strong>Điểm đến</strong></label>
+                        <input type="text" id="destination" class="form-control" placeholder="Chọn điểm đến" list="dropOffPoints" required>
+                        <datalist id="dropOffPoints"></datalist>
+                    </div>
+
+                    <!-- Ngày đi -->
+                    <div class="col-md-3">
+                        <label for="date" class="form-label"><strong>Ngày đi</strong></label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-find-trip w-100">Tìm chuyến xe</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="trip-list py-5">
+        <div class="container">
+            <h2 class="text-center text-primary section-title">Danh Sách Chuyến Xe</h2>
+            <div id="tripResults" class="d-flex flex-wrap justify-content-between gap-3"></div>
+        </div>
+    </section>
+
+
+
+    <!-- Modal chọn ghế -->
+    <div id="seatModal" class="modal">
+        <div class="modal-content">
+            <h3>Chọn ghế ngồi</h3>
+            <div id="seatContainer" class="seat-grid"></div>
+
+            <button id="continueBooking" class="btn btn-primary mt-3">Tiếp tục</button>
+            <button id="closeModal" class="btn btn-secondary mt-2">Quay lại</button>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận đặt vé -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h3>Xác Nhận Đặt Vé</h3>
+            <p id="confirmationTripInfo"></p>
+            <p id="selectedSeats"></p>
+            <p id="totalPrice"></p>
+
+            <!-- Thông tin liên hệ -->
+            <div class="contact-info">
+                <h4>Thông tin liên hệ</h4>
+                <form id="contactForm">
+                    <!-- Tên người đi -->
+                    <div>
+                        <label for="fullName">Tên người đi <span style="color: red;">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Tên người đi" required>
+                    </div>
+
+                    <!-- Số điện thoại -->
+                    <div>
+                        <label for="phoneNumber">Số điện thoại <span style="color: red;">*</span></label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Số điện thoại" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email">Email để nhận thông tin đặt vé <span style="color: red;">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+
+                    <!-- Nút xác nhận -->
+                    <button type="submit" id="confirmBooking" class="btn btn-primary mt-3">Xác nhận đặt vé</button>
+                </form>
+            </div>
+
+            <button id="backButton" class="btn btn-secondary">Quay lại</button>
+        </div>
+    </div>
+
+    <!-- Modal thanh toán -->
+    <div id="paymentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Chọn Phương Thức Thanh Toán</h3>
+            <form id="paymentForm">
+                <div>
+                    <input type="radio" id="momo" name="paymentMethod" value="momo">
+                    <label for="momo">Ví MoMo</label>
+                </div>
+                <div>
+                    <input type="radio" id="atm" name="paymentMethod" value="atm">
+                    <label for="atm">Thẻ ATM / Internet Banking</label>
+                </div>
+                <div>
+                    <input type="radio" id="vnpay" name="paymentMethod" value="vnpay">
+                    <label for="vnpay">Thanh toán qua VNPay - QR</label>
+                </div>
+                <div>
+                    <input type="radio" id="viettel" name="paymentMethod" value="viettel">
+                    <label for="viettel">Thanh toán qua Viettel Money</label>
+                </div>
+                <div>
+                    <input type="radio" id="payOnBoard" name="paymentMethod" value="payOnBoard">
+                    <label for="payOnBoard">Thanh toán khi lên xe</label>
+                </div>
+
+                <button type="submit" class="btn btn-success">Thanh toán</button>
+            </form>
+            <button id="closePaymentModal" class="btn btn-secondary">Đóng</button>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Phần Cho Thuê Xe Hợp Đồng -->
+    <section class="contract-rental py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center text-primary mb-4 section-title">Dịch Vụ Cho Thuê Xe Hợp Đồng</h2>
+            <div class="row">
+                <!-- Xe 4 Chỗ -->
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="https://drive.gianhangvn.com/image/vios-2023-trang-1-2406740j24864.jpg" class="card-img-top" alt="Xe 4 chỗ">
+                        <div class="card-body">
+                            <h5 class="card-title">Xe 4 Chỗ</h5>
+                            <p class="card-text">Phù hợp cho gia đình nhỏ hoặc các chuyến đi ngắn.</p>
+                            <a href="#" class="btn btn-primary">Đặt Xe Hợp Đồng</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xe 7 Chỗ -->
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmhaQq3MzGzgftWOL2M9I0ki-pWq0ZKHFdmLNUV3ZhypBLosAUOiQZSUXmBdM-H7qSOyk&usqp=CAU" class="card-img-top" alt="Xe 7 chỗ">
+                        <div class="card-body">
+                            <h5 class="card-title">Xe 7 Chỗ</h5>
+                            <p class="card-text">Thoải mái cho gia đình đông người và các chuyến đi xa.</p>
+                            <a href="#" class="btn btn-primary">Đặt Xe Hợp Đồng</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xe 16 Chỗ -->
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFJAynAtSXCDS5xj1ln3EC65ynDdjQ90mxbw&s" class="card-img-top" alt="Xe 16 chỗ">
+                        <div class="card-body">
+                            <h5 class="card-title">Xe 16 Chỗ</h5>
+                            <p class="card-text">Lựa chọn lý tưởng cho các đoàn khách du lịch.</p>
+                            <a href="#" class="btn btn-primary">Đặt Xe Hợp Đồng</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xe 30 Chỗ -->
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx02Hrs5enfLiTyBkyTg3rl3tpT1-GcKbXC0oyvTG00Xm9Iuo_25j2-ke46Bp3TVxd1IA&usqp=CAU" class="card-img-top" alt="Xe 30 chỗ">
+                        <div class="card-body">
+                            <h5 class="card-title">Xe 30 Chỗ</h5>
+                            <p class="card-text">Phù hợp cho các đoàn khách lớn hoặc du lịch nhóm.</p>
+                            <a href="#" class="btn btn-primary">Đặt Xe Hợp Đồng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center p-3">
+        &copy; Nhà Xe Ba Duy.
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

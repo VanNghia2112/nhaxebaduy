@@ -1,0 +1,807 @@
+/* Header */
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 0;
+    /* Giảm chiều cao của header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .left-section {
+    display: flex;
+    align-items: center;
+}
+
+header .left-section img.logo {
+    height: 40px;
+    /* Giảm kích thước logo */
+    width: auto;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    /* Giảm kích thước tiêu đề */
+    color: white;
+    margin: 0;
+}
+
+header .right-section {
+    display: flex;
+    align-items: center;
+}
+
+header button {
+    border: 2px solid white;
+    color: white;
+    transition: all 0.3s;
+    padding: 6px 12px;
+    /* Điều chỉnh padding nút */
+    font-size: 0.9rem;
+    /* Giảm kích thước font chữ */
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: transparent;
+}
+
+header button:hover {
+    background-color: white;
+    color: #007bff;
+}
+
+
+/* Nút Đăng Nhập */
+
+.right-section .btn-primary {
+    background-color: #007bff;
+    /* Màu xanh dương sáng */
+    color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.right-section .btn-primary:hover {
+    background-color: #0056b3;
+    /* Màu khi hover */
+    transform: translateY(-2px);
+    /* Di chuyển nhẹ khi hover */
+}
+
+
+/* Nút Đăng Ký */
+
+.right-section .btn-secondary {
+    background-color: #28a745;
+    /* Màu xanh lá cây */
+    color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.right-section .btn-secondary:hover {
+    background-color: #218838;
+    /* Màu khi hover */
+    transform: translateY(-2px);
+    /* Di chuyển nhẹ khi hover */
+}
+
+
+/* Banner */
+
+.banner {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    /* Giảm chiều cao banner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+.banner-content h2 {
+    font-size: 2.5rem;
+    /* Giảm kích thước chữ tiêu đề */
+    font-weight: bold;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 15px;
+    /* Giảm khoảng cách dưới tiêu đề */
+}
+
+.banner-content p {
+    font-size: 1.1rem;
+    /* Giảm kích thước văn bản */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
+
+
+/* Đồng bộ kích thước và màu sắc cho các tiêu đề */
+
+.section-title {
+    font-size: 3rem;
+    /* Đặt kích thước chữ đồng nhất */
+    color: #007bff;
+    /* Màu xanh dương chủ đạo */
+    font-weight: bold;
+    text-align: center;
+    /* Căn giữa */
+    margin-bottom: 30px;
+    /* Khoảng cách dưới mỗi tiêu đề */
+}
+
+
+/* Nút Đặt Vé Ngay */
+
+.banner-content .btn-warning {
+    font-weight: bold;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    /* Điều chỉnh padding để nút nhỏ lại */
+    border-radius: 30px;
+    font-size: 1rem;
+    /* Giảm kích thước chữ */
+    transition: all 0.3s;
+}
+
+.banner-content .btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-5px);
+}
+
+
+/* 🔹 Responsive Design */
+
+@media (max-width: 768px) {
+    .trip-card {
+        width: 100%;
+        margin: 10px;
+    }
+}
+
+
+/* Input và radio button */
+
+.form-control {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s;
+    height: 45px;
+    background-color: #f0f4f8;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+
+/* Nút tìm chuyến xe */
+
+.btn-find-trip {
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    transition: all 0.3s;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    height: 45px;
+    /* Đặt chiều cao bằng với các input */
+}
+
+.btn-find-trip:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+
+/* Radio Button */
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
+/* Nhãn và hướng dẫn mua vé */
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+a.text-primary {
+    color: #007bff !important;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+a.text-primary:hover {
+    color: #0056b3 !important;
+}
+
+
+/* Hiệu ứng khung viền cho toàn bộ form */
+
+.search-box {
+    border-radius: 15px;
+    border: 2px solid rgba(0, 123, 255, 0.2);
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.1);
+}
+
+.search-box:hover {
+    box-shadow: 0px 15px 30px rgba(0, 123, 255, 0.2);
+    border-color: rgba(0, 123, 255, 0.5);
+}
+
+
+/* Căn chỉnh các mục đều nhau */
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: center;
+}
+
+input::placeholder {
+    color: #888;
+    opacity: 0.8;
+}
+
+
+/* Cho Thuê Xe Hợp Đồng */
+
+.contract-rental {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+.contract-rental h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card {
+    border-radius: 15px;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h5 {
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card-body p {
+    color: #555;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    transition: all 0.3s;
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+/* 🔹 Chỉnh layout danh sách chuyến xe */
+
+#tripResults {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.trip-card {
+    width: 30%;
+    /* Đảm bảo mỗi chuyến xe chiếm khoảng 1/3 không gian */
+    min-width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.trip-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.trip-card h5 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.trip-card p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.trip-card strong {
+    color: #007bff;
+}
+
+.btn-book {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-book:hover {
+    background-color: #218838;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+
+/* 🔹 Responsive design - Thẻ chuyến xe khi màn hình nhỏ */
+
+@media (max-width: 768px) {
+    #tripResults {
+        justify-content: center;
+        /* Căn giữa các thẻ chuyến xe */
+    }
+    .trip-card {
+        width: 100%;
+        /* Thẻ chuyến xe chiếm toàn bộ chiều rộng trên các màn hình nhỏ */
+        max-width: 350px;
+        /* Đảm bảo thẻ không quá rộng */
+    }
+}
+
+
+/* 🔹 Layout ghế ngồi */
+
+#seatContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+/* 🔹 Tạo khoảng cách và căn chỉnh các hàng ghế */
+
+.row-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+/* 🔹 Vị trí ghế trống */
+
+.empty-space {
+    width: 60px;
+    height: 60px;
+}
+
+
+/* 🔹 Ghế ngồi */
+
+.seat {
+    width: 60px;
+    height: 60px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.seat:hover {
+    transform: scale(1.1);
+    /* Tăng kích thước khi di chuột qua */
+}
+
+
+/* 🔹 Ghế đã chọn */
+
+.seat.selected {
+    background-color: #007bff;
+}
+
+
+/* 🔹 Ghế đã đặt */
+
+.seat.booked {
+    background-color: #dc3545;
+    cursor: not-allowed;
+}
+
+
+/* Modal xác nhận đặt vé */
+
+#confirmationModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    text-align: center;
+}
+
+#confirmationModal .modal-content {
+    padding: 20px;
+}
+
+#confirmationModal button {
+    margin-top: 20px;
+}
+
+
+/* 🔹 Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    /* Điều chỉnh độ rộng của modal */
+    text-align: center;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+
+/* Thông tin liên hệ */
+
+.contact-info {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Tiêu đề Thông tin liên hệ */
+
+.contact-info h4 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Định dạng các trường nhập liệu */
+
+.contact-info form div {
+    margin-bottom: 20px;
+}
+
+
+/* Label cho các trường nhập liệu */
+
+.contact-info label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+
+/* Trường nhập liệu */
+
+.contact-info input[type="text"],
+.contact-info input[type="tel"],
+.contact-info input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+
+/* Khi trường nhập liệu được focus */
+
+.contact-info input[type="text"]:focus,
+.contact-info input[type="tel"]:focus,
+.contact-info input[type="email"]:focus {
+    border-color: #28a745;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+
+/* Nút Xác nhận đặt vé */
+
+.contact-info button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-info button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+
+/* Nút quay lại */
+
+#backButton {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#backButton:hover {
+    background-color: #5a6268;
+}
+
+
+/* Modal thanh toán */
+
+#paymentModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 9999;
+}
+
+
+/* Nội dung modal thanh toán */
+
+#paymentModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+/* Tiêu đề modal thanh toán */
+
+#paymentModal h3 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+
+/* Các radio buttons cho phương thức thanh toán */
+
+#paymentModal input[type="radio"] {
+    margin-right: 10px;
+}
+
+
+/* Label cho radio buttons */
+
+#paymentModal label {
+    font-size: 16px;
+    color: #555;
+}
+
+
+/* Nút "Thanh toán" */
+
+#paymentModal .btn-success {
+    background-color: #4CAF50;
+    /* Màu xanh cho nút thanh toán */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#paymentModal .btn-success:hover {
+    background-color: #45a049;
+    /* Màu xanh đậm khi hover */
+}
+
+
+/* Nút đóng modal */
+
+#paymentModal .btn-secondary {
+    background-color: #f44336;
+    /* Màu đỏ cho nút đóng */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#paymentModal .btn-secondary:hover {
+    background-color: #da190b;
+    /* Màu đỏ đậm khi hover */
+}
+
+
+/* Căn chỉnh các phần tử trong modal thanh toán */
+
+#paymentModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* Cải thiện bố cục modal thanh toán */
+
+#paymentModal .modal-content div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Căn chỉnh các nút trong modal thanh toán */
+
+#paymentModal button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+
+/* Tiêu đề trong modal thanh toán */
+
+#paymentModal .modal-content h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+/* Styling cho phần countdown thời gian thanh toán */
+
+#paymentModal #countdown {
+    font-size: 22px;
+    color: #ff5722;
+    /* Màu đỏ cho thời gian đếm ngược */
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+/* Các nút "Thanh toán" và "Đóng" */
+
+#paymentModal .btn-success,
+#paymentModal .btn-secondary {
+    width: 100%;
+}
